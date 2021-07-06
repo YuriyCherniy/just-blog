@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}@YuriyCherniy's blog{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      {% for post in posts %}
+      <a class="text-dark" href="{{ post.get_absolute_url }}">
+        <h3 class="custom-font">{{ post.title }}</h3>
+      </a>
+      <div class="text-muted">{{ post.created }}</div>
+      <br>
+      <div class="text-justify mb-5">{{ post.text|truncatewords:70|safe }} <b><a class="text-dark"
+            href="{{ post.get_absolute_url }}">читать
+            далше</a></b></div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</div>
+{% endblock content %}
