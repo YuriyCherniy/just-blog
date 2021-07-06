@@ -5,7 +5,7 @@ from django.urls import reverse
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True)
     text = HTMLField()
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
