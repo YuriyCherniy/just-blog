@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 from posts.models import Post
+from tags.models import Tag
 
 
 class PostViewTestCase(TestCase):
@@ -28,3 +29,11 @@ class PostViewTestCase(TestCase):
         post = Post.objects.first()
         response = self.c.get(reverse('post_detail', args=[post.slug]))
         self.assertTemplateUsed(response, 'posts/post_detail.html')
+
+    # other tests
+    def test_post_detail_view_get_context_data_method(self):
+        post = Post.objects.first()
+        tag = Tag.objects.create(title='test title', slug='test-title')
+        post.tag.set([tag])
+        response = self.c.get(reverse('post_detail', args=[post.slug]))
+        self.assertEqual(len(response.context['tag_list']), 1)
