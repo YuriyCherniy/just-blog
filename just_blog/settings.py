@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'core',
     'posts',
     'users',
+    'tags',
+
     'tinymce',
 ]
 
