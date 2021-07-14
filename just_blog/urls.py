@@ -16,10 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from posts.views import PostDeatailAbout
+
+
 urlpatterns = [
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('post/', include('posts.urls')),
-    path('tag/', include('tags.urls'))
+    path('tag/', include('tags.urls')),
+    path('about/', PostDeatailAbout.as_view(), name='about')
 ]
