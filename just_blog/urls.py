@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from posts.views import PostDeatailAbout
+from posts.views import PostDetailAbout
 
 
 urlpatterns = [
@@ -25,5 +25,5 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('post/', include('posts.urls')),
     path('tag/', include('tags.urls')),
-    path('about/', PostDeatailAbout.as_view(), name='about')
+    path('about/', PostDetailAbout.as_view(), name='about')
 ]

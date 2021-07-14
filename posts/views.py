@@ -13,7 +13,7 @@ class PostDetail(DetailView):
         return context
 
 
-class PostDeatailAbout(DetailView):
+class PostDetailAbout(DetailView):
     template_name = 'posts/post_detail_about.html'
 
     def get_object(self):
