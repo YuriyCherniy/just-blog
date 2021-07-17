@@ -13,14 +13,14 @@ class Post(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     tag = models.ManyToManyField(Tag, blank=True)
 
-    def get_absolute_url(self):
-        return reverse('post_detail', args=[self.slug])
-
     class Meta:
         ordering = ['-created']
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[self.slug])
 
 
 class PostAbout(models.Model):
