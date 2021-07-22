@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db import IntegrityError
 
 from .models import GuestPost, GuestComment
 from .forms import GuestCommentForm
@@ -51,12 +52,15 @@ class GuestCommentCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     def post(self, request):
         form = GuestCommentForm(request.POST)
         if form.is_valid():
-            GuestComment.objects.create(
-                username=form.cleaned_data['username'],
-                text=form.cleaned_data['text'],
-                guest_post_id=form.cleaned_data['guest_post_pk']
-            )
-            messages.success(request, 'Комментарий добавлен')
+            try:
+                GuestComment.objects.create(
+                    username=form.cleaned_data['username'],
+                    text=form.cleaned_data['text'],
+                    guest_post_id=form.cleaned_data['guest_post_pk']
+                )
+                messages.success(request, 'Комментарий добавлен')
+            except IntegrityError:
+                messages.warning(request, 'Это сообщение уже содержит комментарий')
             return redirect(reverse('guest_room'))
 
         messages.warning(request, 'Проверьте данные')
