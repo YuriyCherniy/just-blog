@@ -25,5 +25,6 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('post/', include('posts.urls')),
     path('tag/', include('tags.urls')),
-    path('about/', PostDetailAbout.as_view(), name='about')
+    path('about/', PostDetailAbout.as_view(), name='about'),
+    path('guest-room/', include('guestroom.urls')),
 ]

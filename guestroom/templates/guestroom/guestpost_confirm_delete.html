@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Удалить запись?{% endblock title %}
+
+{% block content %}
+{% csrf_token %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Удалить запись посетителя - "{{ object }}"?</legend>
+                        <span>Это действие приведёт к безвозвратному удалению.</span>
+                    </fieldset>
+                    <button class="btn btn-danger" type="submit">Да</button>
+                    <a class="btn btn-secondary" href="{% url 'guest_room' %}">Отменить</a>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

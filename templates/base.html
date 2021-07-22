@@ -31,13 +31,13 @@
                 <div class="col px-0">
                   <div class="d-flex justify-content-lg-start">
                     <a class="text-muted" href="/">
-                      <h3 >@YuriyCherniy</h3>
+                      <h3>@YuriyCherniy</h3>
                     </a>
                   </div>
                 </div>
                 <div class="col px-0">
                   <div class="d-flex justify-content-lg-end">
-                    <a class="text-muted mx-lg-3" href="">
+                    <a class="text-muted mx-lg-3" href="{% url 'guest_room' %}">
                       <h4>гостевая</h4>
                     </a>
                     <a class="text-muted ml-3" href="{% url 'about' %}">
@@ -47,7 +47,7 @@
                 </div>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
     {% block content %}{% endblock content %}
   </div>
 
-  
+
   <footer class="footer mt-2">
     <hr>
     <div class="container my-2">

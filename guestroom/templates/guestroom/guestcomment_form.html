@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Написать комментарий{% endblock title %}
+
+{% block content %}
+<form action="{% url 'guest_comment_create' %}" method="post">
+  {% csrf_token %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-outline-dark">Отправить</button>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock content %}
