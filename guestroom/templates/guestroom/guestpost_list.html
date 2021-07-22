@@ -3,65 +3,57 @@
 {% block title %}Гостевая книга{% endblock title %}
 
 {% block content %}
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
+<form action="{% url 'guest_post_create' %}" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Представьтесь:</label>
+    <input type="text" maxlength="40" name="anonymous_username" class="form-control" id="exampleFormControlInput1"
+      placeholder="Ваше имя">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Текст:</label>
+    <textarea name="text" maxlength="700" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+  </div>
+  <button type="submit" class="btn btn-outline-dark">Отправить</button>
+</form>
+<hr>
+{% for post in guestpost_list%}
+<b class="mr-3">{{ post.anonymous_username }}</b>
+<small class="text-muted">{{ post.created|date:"d M Y" }}</small>
+<br>
+{{ post.text }}
+<br>
+{% if user.is_authenticated and user.is_superuser %}
+<a href="{% url 'guest_post_delete' post.pk %}" class="mr-2">Удалить</a>
+<a href="{{ post.get_absolute_url }}" class="mr-2">Изменить</a>
+{% if not post.guestcomment %}
+<a href="{% url 'guest_post_detail' post.pk %}">Ответить</a>
+{% endif %}
+{% endif %}
+<br>
 
-      <form action="{% url 'guest_post_create' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Представьтесь:</label>
-          <input type="text" maxlength="40" name="anonymous_username" class="form-control" id="exampleFormControlInput1"
-            placeholder="Ваше имя">
-        </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Текст:</label>
-          <textarea name="text" maxlength="700" class="form-control" id="exampleFormControlTextarea1"
-            rows="5"></textarea>
-        </div>
-        <button type="submit" class="btn btn-outline-dark">Отправить</button>
-      </form>
-      <hr>
-      {% for post in guestpost_list%}
-      <b class="mr-3">{{ post.anonymous_username }}</b>
-      <small class="text-muted">{{ post.created|date:"d M Y" }}</small>
+{% if post.guestcomment %}
+<div class="container">
+  <div class="row mt-1">
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-11 bg-light rounded">
+      <b class="mr-3 text-info">{{ post.guestcomment.username }}</b>
+      <small class="text-muted">{{ post.guestcomment.created|date:"d M Y" }}</small>
       <br>
-      {{ post.text }}
+      {{ post.guestcomment.text }}
       <br>
       {% if user.is_authenticated and user.is_superuser %}
-        <a href="{% url 'guest_post_delete' post.pk %}" class="mr-2">Удалить</a>
-        <a href="{{ post.get_absolute_url }}" class="mr-2">Изменить</a>
-        {% if not post.guestcomment %}
-        <a href="{% url 'guest_post_detail' post.pk %}">Ответить</a>
+      <a href="{% url 'guest_comment_delete' post.guestcomment.pk %}" class="mr-2">Удалить</a>
+      <a href="{{ post.guestcomment.get_absolute_url }}" class="mr-2">Изменить</a>
       {% endif %}
-      {% endif %}
-      <br>
-
-      {% if post.guestcomment %}
-      <div class="container">
-        <div class="row mt-1">
-          <div class="col-lg-1">
-          </div>
-          <div class="col-lg-11 bg-light rounded">
-            <b class="mr-3 text-info">{{ post.guestcomment.username }}</b>
-            <small class="text-muted">{{ post.guestcomment.created|date:"d M Y" }}</small>
-            <br>
-            {{ post.guestcomment.text }}
-            <br>
-            {% if user.is_authenticated and user.is_superuser %}
-            <a href="{% url 'guest_comment_delete' post.guestcomment.pk %}" class="mr-2">Удалить</a>
-            <a href="{{ post.guestcomment.get_absolute_url }}" class="mr-2">Изменить</a>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      {% endif %}
-      <hr>
-      {% endfor %}
-
-      {% include 'pagination.html' %}
-      <br>
     </div>
   </div>
 </div>
+{% endif %}
+<hr>
+{% endfor %}
+
+{% include 'pagination.html' %}
+<br>
 {% endblock content %}

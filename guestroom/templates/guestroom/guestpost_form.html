@@ -6,14 +6,8 @@
 
 {% block content %}
 <form action="{% url 'guest_post_create' %}" method="post">
-    {% csrf_token %}
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-outline-dark">Отправить</button>
-            </div>
-        </div>
-    </div>
+  {% csrf_token %}
+  {{ form|crispy }}
+  <button type="submit" class="btn btn-outline-dark">Отправить</button>
 </form>
 {% endblock content %}

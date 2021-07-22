@@ -52,9 +52,15 @@
         </div>
       </div>
     </nav>
-    {% block content %}{% endblock content %}
-  </div>
 
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          {% block content %}{% endblock content %}
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer mt-2">
     <hr>
