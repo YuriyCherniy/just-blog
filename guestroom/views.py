@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
@@ -46,7 +46,7 @@ class GuestPostDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         return super().post(request, *args, **kwargs)
 
 
-class GuestCommentCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class GuestCommentCreate(LoginRequiredMixin, SuccessMessageMixin, View):
     raise_exception = True
 
     def post(self, request):
