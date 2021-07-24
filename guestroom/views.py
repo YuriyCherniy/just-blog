@@ -8,11 +8,20 @@ from django.db import IntegrityError
 
 from .models import GuestPost, GuestComment
 from .forms import GuestCommentForm
+from .services import NewGuestPostCounterSingleton
+
+
+post_counter = NewGuestPostCounterSingleton()
 
 
 class GuestPostList(ListView):
     model = GuestPost
     paginate_by = 5
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            post_counter.reset_counter()
+        return super().get(request, *args, **kwargs)
 
 
 class GuestPostDetail(LoginRequiredMixin, DetailView):
@@ -25,6 +34,10 @@ class GuestPostCreate(SuccessMessageMixin, CreateView):
     fields = ['anonymous_username', 'text']
     success_url = reverse_lazy('guest_room')
     success_message = 'Сообщение добавлено'
+
+    def post(self, request, *args, **kwargs):
+        post_counter.add_one()
+        return super().post(request, *args, **kwargs)
 
 
 class GuestPostUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

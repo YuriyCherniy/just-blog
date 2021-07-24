@@ -1,12 +1,12 @@
-        {% for post in post_list %}
-        <a class="text-dark" href="{{ post.get_absolute_url }}">
-          <h3 class="custom-font">{{ post.title }}</h3>
-        </a>
-        <div class="text-muted">{{ post.created|date:"d M Y" }}</div>
-        <br>
-        <div class="text-justify mb-5">{{ post.text|truncatewords:100|safe }} <b><a class="text-dark"
-              href="{{ post.get_absolute_url }}">читать
-              далше</a></b></div>
-        <br>
-        {% endfor %}
-        {% include 'pagination.html' %}
+{% for post in post_list %}
+  <a class="text-dark" href="{{ post.get_absolute_url }}">
+    <h3 class="custom-font">{{ post.title }}</h3>
+  </a>
+  <div class="text-muted">{{ post.created|date:"d M Y" }}</div>
+  <br>
+  <div class="text-justify mb-5">{{ post.text|truncatewords:100|safe }} <b><a class="text-dark"
+        href="{{ post.get_absolute_url }}">читать
+        далше</a></b></div>
+  <br>
+{% endfor %}
+{% include 'pagination.html' %}
