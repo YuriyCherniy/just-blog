@@ -1,9 +1,9 @@
 from django import template
 
-from guestroom.services import NewGuestPostCounterSingleton
+from guestroom.services import NewGuestPostCounter
 
 register = template.Library()
-post_counter = NewGuestPostCounterSingleton()
+post_counter = NewGuestPostCounter()
 
 
 @register.simple_tag

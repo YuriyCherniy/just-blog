@@ -8,10 +8,10 @@ from django.db import IntegrityError
 
 from .models import GuestPost, GuestComment
 from .forms import GuestCommentForm
-from .services import NewGuestPostCounterSingleton
+from .services import NewGuestPostCounter
 
 
-post_counter = NewGuestPostCounterSingleton()
+post_counter = NewGuestPostCounter()
 
 
 class GuestPostList(ListView):
