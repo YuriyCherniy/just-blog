@@ -25,9 +25,9 @@
 <br>
 {% if user.is_authenticated and user.is_superuser %}
 <a href="{% url 'guest_post_delete' post.pk %}" class="mr-2">Удалить</a>
-<a href="{{ post.get_absolute_url }}" class="mr-2">Изменить</a>
+<a href="{% url 'guest_post_update' post.pk %}" class="mr-2">Изменить</a>
 {% if not post.guestcomment %}
-<a href="{% url 'guest_post_detail' post.pk %}">Ответить</a>
+<a href="{{ post.get_absolute_url }}">Ответить</a>
 {% endif %}
 {% endif %}
 <br>
@@ -45,7 +45,7 @@
       <br>
       {% if user.is_authenticated and user.is_superuser %}
       <a href="{% url 'guest_comment_delete' post.guestcomment.pk %}" class="mr-2">Удалить</a>
-      <a href="{{ post.guestcomment.get_absolute_url }}" class="mr-2">Изменить</a>
+      <a href="{% url 'guest_comment_update' post.guestcomment.pk %}" class="mr-2">Изменить</a>
       {% endif %}
     </div>
   </div>

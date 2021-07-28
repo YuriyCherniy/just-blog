@@ -15,7 +15,7 @@ class GuestPost(models.Model):
         return self.anonymous_username
 
     def get_absolute_url(self):
-        return reverse('guest_post_update', args=[self.pk])
+        return reverse('guest_post_detail', args=[self.pk])
 
 
 class GuestComment(models.Model):
@@ -27,6 +27,3 @@ class GuestComment(models.Model):
 
     def __str__(self):
         return self.text[:40]
-
-    def get_absolute_url(self):
-        return reverse('guest_comment_update', args=[self.pk])
