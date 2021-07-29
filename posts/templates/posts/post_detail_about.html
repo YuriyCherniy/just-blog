@@ -3,7 +3,9 @@
 {% block title %}О блоге{% endblock title %}
 
 {% block content %}
-        <br>
-        {{ object.text|safe }}
-        <br>
+<br>
+<div class="text-justify">
+  {{ object.text|safe }}
+</div>
+<br>
 {% endblock content %}

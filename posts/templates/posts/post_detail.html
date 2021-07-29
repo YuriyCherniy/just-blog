@@ -3,20 +3,22 @@
 {% block title %}{{ post.title }}{%endblock title%}
 
 {% block content %}
-        <h1 class="custom-font">{{ post.title }}</h1>
-        <div class="text-muted">{{ post.created|date:"d M Y" }}</div>
-        <br>
-        {{ post.text|safe }}
-        <div class="row">
-          <div class="col">
-            <hr>
-            {% for tag in tag_list %}
-              <a href="{{ tag.get_absolute_url }}"><small class="text-muted mx-2">[{{ tag }}]</small></a>
-            {% endfor %}
-          </div>
-        </div>
-        <br>
-        {% if user.is_authenticated and user.is_superuser %}
-        <a class="btn btn-outline-dark btn-sm float-right" href="{% url 'admin:posts_post_change' post.pk %}">Изменить</a>
-        {% endif %}
+<h1 class="custom-font">{{ post.title }}</h1>
+<div class="text-muted">{{ post.created|date:"d M Y" }}</div>
+<br>
+<div class="text-justify">
+  {{ post.text|safe }}
+</div>
+<div class="row">
+  <div class="col">
+    <hr>
+    {% for tag in tag_list %}
+    <a href="{{ tag.get_absolute_url }}"><small class="text-muted mx-2">[{{ tag }}]</small></a>
+    {% endfor %}
+  </div>
+</div>
+<br>
+{% if user.is_authenticated and user.is_superuser %}
+<a class="btn btn-outline-dark btn-sm float-right" href="{% url 'admin:posts_post_change' post.pk %}">Изменить</a>
+{% endif %}
 {% endblock content %}
