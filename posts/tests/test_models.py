@@ -6,7 +6,7 @@ from posts.models import Post, PostAbout
 
 class PostModelTestCase(TestCase):
     @classmethod
-    def setUpTestData(self):
+    def setUpTestData(cls):
         Post.objects.create(
             title='test title', slug='test-slug', text='test text',
         )
