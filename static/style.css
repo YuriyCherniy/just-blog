@@ -16,7 +16,7 @@ html, body {
 /*makes images and embed videos responsive*/
   iframe {
     width:100%;
-    height:auto;
+    height:300px;
   }
   .tiny-img {
     width:100%;

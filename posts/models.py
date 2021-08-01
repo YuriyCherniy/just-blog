@@ -8,6 +8,8 @@ from tags.models import Tag
 class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
+    poster = models.ImageField(upload_to='', null=True, blank=True)
+    poster_description = models.CharField(max_length=200, null=True, blank=True)
     text = HTMLField()
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)

@@ -6,6 +6,9 @@
 <h1 class="custom-font">{{ post.title }}</h1>
 <div class="text-muted">{{ post.created|date:"d M Y" }}</div>
 <br>
+{% if post.poster %}
+<img class="tiny-img rounded mb-3" src="{{ post.poster.url }}" alt="{{ post.poster_description }}">
+{% endif %}
 <div class="text-justify">
   {{ post.text|safe }}
 </div>
