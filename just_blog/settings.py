@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'tags',
     'guestroom',
 
-    'tinymce',
+    'ckeditor',
+    'ckeditor_uploader',
     'crispy_forms',
 ]
 
@@ -140,25 +141,30 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
-TINYMCE_DEFAULT_CONFIG = {
-    "theme": "silver",
-    "height": 500,
-    "menubar": True,
-    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,"
-    "anchor,searchreplace,visualblocks,code,fullscreen,insertdatetime,media,"
-    "table,paste,code,help,wordcount",
-    "toolbar": "undo redo | formatselect | "
-    "bold italic backcolor | alignleft aligncenter "
-    "alignright alignjustify | bullist numlist outdent indent | "
-    "removeformat | media | image | code | help",
-    "media_dimensions": False,
-    "image_dimensions": False,
-    "image_class_list": [
-            {"title": "responsive", "value": "tiny-img"}
-        ]
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Format'],
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote'],
+            ['TextColor', 'BGColor'],
+            ['Undo', 'Redo'],
+            ['NumberedList', 'BulletedList'],
+            # ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['Image', 'Youtube'],
+            ['CodeSnippet'],
+            ['RemoveFormat', 'Source']
+        ],
+        'extraPlugins': ['codesnippet', 'youtube'],
+        'forcePasteAsPlainText': True,
+    }
 }
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
