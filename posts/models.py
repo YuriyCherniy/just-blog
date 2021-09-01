@@ -12,6 +12,7 @@ class Post(models.Model):
     poster = models.ImageField(upload_to='', blank=True, null=True, verbose_name='постер')
     text = RichTextUploadingField(verbose_name='текст')
     tag = models.ManyToManyField(Tag, blank=True, verbose_name='теги')
+    is_published = models.BooleanField(default=False, verbose_name='пост опубликован')
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
