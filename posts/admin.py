@@ -6,7 +6,7 @@ from posts.models import Post, PostAbout, Image
 class ImageInline(admin.TabularInline):
     model = Image
     readonly_fields = [
-        'get_image_url', 'get_image',
+        'get_image_url', 'get_image_tag',
     ]
 
 

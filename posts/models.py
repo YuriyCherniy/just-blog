@@ -28,7 +28,7 @@ class Post(models.Model):
 
 
 class Image(models.Model):
-    image = models.ImageField(upload_to='', blank=True, null=True, verbose_name='изображение')
+    image = models.ImageField(upload_to='', verbose_name='изображение')
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -38,9 +38,9 @@ class Image(models.Model):
         return mark_safe(f'<h3>{self.image.url}</h3>')
     get_image_url.short_description = 'ссылка для вставки'
 
-    def get_image(self):
+    def get_image_tag(self):
         return mark_safe(f'<img src="{self.image.url}" width="150" height="auto"/>')
-    get_image.short_description = 'миниатюра'
+    get_image_tag.short_description = 'миниатюра'
 
 
 class PostAbout(models.Model):
