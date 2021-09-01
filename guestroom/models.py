@@ -10,6 +10,8 @@ class GuestPost(models.Model):
 
     class Meta:
         ordering = ['-created']
+        verbose_name = 'гостевое сообщение'
+        verbose_name_plural = 'гостевые сообщения'
 
     def __str__(self):
         return self.anonymous_username
@@ -24,6 +26,10 @@ class GuestComment(models.Model):
     guest_post = models.OneToOneField(GuestPost, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'комментарий'
+        verbose_name_plural = 'комментарии к сообщениям'
 
     def __str__(self):
         return self.text[:40]
