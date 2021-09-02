@@ -7,14 +7,7 @@
 {% block content %}
 <form action="{% url 'guest_post_create' %}" method="post">
   {% csrf_token %}
-  {{ form.anonymous_username|as_crispy_field }}
-  {{ form.text|as_crispy_field }}
-  
-  <span class="text-danger">{{ form.errors.captcha }}</span>
-  {{ form.captcha }}
-
-  
-
+  {{ form|crispy }}
   <button type="submit" class="btn btn-outline-dark">Отправить</button>
 </form>
 {% endblock content %}

@@ -1,10 +1,13 @@
 {% load static %}
+{% load recaptcha3 %}
 {% load new_guest_post_counter_tag %}
 
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
+  {% recaptcha_init %}
+  {% recaptcha_ready action_name='homepage' %}
   <!-- custom google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

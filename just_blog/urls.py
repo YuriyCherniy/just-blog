@@ -24,7 +24,6 @@ from posts.views import PostDetailAbout
 urlpatterns = [
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
-    path('captcha/', include('captcha.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('post/', include('posts.urls')),
     path('tag/', include('tags.urls')),

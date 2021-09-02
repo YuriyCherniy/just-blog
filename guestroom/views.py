@@ -45,7 +45,6 @@ class GuestPostCreate(SuccessMessageMixin, CreateView):
         if form.is_valid():
             post_counter.add_one()
             return super().post(request, *args, **kwargs)
-        messages.warning(request, 'Captcha введена неверно!')
         return render(
             request, 'guestroom/guestpost_form.html', {'form': form}
         )

@@ -1,12 +1,12 @@
 from django import forms
 
-from captcha.fields import CaptchaField
+from snowpenguin.django.recaptcha3.fields import ReCaptchaField
 
 from .models import GuestPost, GuestComment
 
 
 class GuestPostForm(forms.ModelForm):
-    captcha = CaptchaField()
+    captcha = ReCaptchaField()
 
     class Meta:
         model = GuestPost

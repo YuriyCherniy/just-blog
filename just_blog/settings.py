@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'crispy_forms',
     'django_cleanup.apps.CleanupConfig',
-    'captcha',
+    'snowpenguin.django.recaptcha3',
 ]
 
 MIDDLEWARE = [
@@ -181,3 +181,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+RECAPTCHA_PRIVATE_KEY = '6LfJUD8cAAAAAJOWToQ0qHcxeSMsxm6xfBwMLTrW'
+RECAPTCHA_PUBLIC_KEY = '6LfJUD8cAAAAAHOQdUlPqZ2joMbXhFy_Fhw2AiLH'
+RECAPTCHA_DEFAULT_ACTION = 'generic'
+RECAPTCHA_SCORE_THRESHOLD = 0.5
