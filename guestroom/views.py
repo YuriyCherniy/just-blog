@@ -7,7 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.db import IntegrityError
 
 from .models import GuestPost, GuestComment
-from .forms import GuestCommentForm
+from .forms import GuestCommentForm, GuestPostForm
 from .services import NewGuestPostCounter
 
 
@@ -23,6 +23,11 @@ class GuestPostList(ListView):
             post_counter.reset_counter()
         return super().get(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = GuestPostForm()
+        return context
+
 
 class GuestPostDetail(LoginRequiredMixin, DetailView):
     model = GuestPost
@@ -36,8 +41,14 @@ class GuestPostCreate(SuccessMessageMixin, CreateView):
     success_message = 'Сообщение добавлено'
 
     def post(self, request, *args, **kwargs):
-        post_counter.add_one()
-        return super().post(request, *args, **kwargs)
+        form = GuestPostForm(request.POST)
+        if form.is_valid():
+            post_counter.add_one()
+            return super().post(request, *args, **kwargs)
+        messages.warning(request, 'Captcha введена неверно!')
+        return render(
+            request, 'guestroom/guestpost_form.html', {'form': form}
+        )
 
 
 class GuestPostUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

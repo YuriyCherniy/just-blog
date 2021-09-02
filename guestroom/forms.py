@@ -1,6 +1,16 @@
 from django import forms
 
-from .models import GuestComment
+from captcha.fields import CaptchaField
+
+from .models import GuestPost, GuestComment
+
+
+class GuestPostForm(forms.ModelForm):
+    captcha = CaptchaField()
+
+    class Meta:
+        model = GuestPost
+        fields = ['anonymous_username', 'text']
 
 
 class GuestCommentForm(forms.ModelForm):

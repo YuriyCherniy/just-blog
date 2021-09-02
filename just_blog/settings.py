@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'core',
     'posts',
     'users',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'crispy_forms',
     'django_cleanup.apps.CleanupConfig',
+    'captcha',
 ]
 
 MIDDLEWARE = [

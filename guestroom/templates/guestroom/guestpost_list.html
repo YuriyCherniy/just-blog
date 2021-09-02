@@ -1,19 +1,13 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block title %}Гостевая книга{% endblock title %}
 
 {% block content %}
 <form action="{% url 'guest_post_create' %}" method="post">
   {% csrf_token %}
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Представьтесь:</label>
-    <input type="text" maxlength="40" name="anonymous_username" class="form-control" id="exampleFormControlInput1"
-      placeholder="Ваше имя">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Текст:</label>
-    <textarea name="text" maxlength="700" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-  </div>
+  {{ form|crispy }}
   <button type="submit" class="btn btn-outline-dark">Отправить</button>
 </form>
 <hr>
