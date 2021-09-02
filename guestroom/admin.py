@@ -3,6 +3,14 @@ from django.contrib import admin
 from .models import GuestPost, GuestComment
 
 
-admin.site.register(GuestPost)
+class GuestCommentInline(admin.TabularInline):
+    model = GuestComment
 
-admin.site.register(GuestComment)
+
+class GuestPostAdmin(admin.ModelAdmin):
+    inlines = [
+        GuestCommentInline,
+    ]
+
+
+admin.site.register(GuestPost, GuestPostAdmin)
