@@ -16,7 +16,7 @@ post_counter = NewGuestPostCounter()
 
 class GuestPostList(ListView):
     model = GuestPost
-    paginate_by = 5
+    paginate_by = 10
 
     def get(self, request, *args, **kwargs):
         if request.user.is_superuser:
