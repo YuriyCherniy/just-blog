@@ -39,12 +39,18 @@ class GuestPostCreate(SuccessMessageMixin, CreateView):
     fields = ['anonymous_username', 'text']
     success_url = reverse_lazy('guest_room')
     success_message = 'Сообщение добавлено'
+    wrong_captcha = 'Системы безопасности сайта обнаружили подозрительную \
+        активность с вашего IP адресса похожую на поведение ботов. \
+        Попробуйте оставить сообщение ещё раз. Если проблема повторяется, \
+        сообщите об этом администрации сайта.'
 
     def post(self, request, *args, **kwargs):
         form = GuestPostForm(request.POST)
         if form.is_valid():
             post_counter.add_one()
             return super().post(request, *args, **kwargs)
+        if form.errors.get('captcha', False):
+            messages.warning(request, self.wrong_captcha)
         return render(
             request, 'guestroom/guestpost_form.html', {'form': form}
         )
