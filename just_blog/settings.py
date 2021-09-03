@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
 
     'core',
     'posts',
@@ -186,3 +188,5 @@ RECAPTCHA_PRIVATE_KEY = '6LfJUD8cAAAAAJOWToQ0qHcxeSMsxm6xfBwMLTrW'
 RECAPTCHA_PUBLIC_KEY = '6LfJUD8cAAAAAHOQdUlPqZ2joMbXhFy_Fhw2AiLH'
 RECAPTCHA_DEFAULT_ACTION = 'generic'
 RECAPTCHA_SCORE_THRESHOLD = 0.5
+
+SITE_ID=2

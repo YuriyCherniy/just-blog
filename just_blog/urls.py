@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
 
 from posts.views import PostDetailAbout
+from core.sitemap import IndexSiteMap, PostSiteMap, PostAboutSiteMap, GuestRoomSiteMap
 
 
 urlpatterns = [
@@ -29,6 +31,12 @@ urlpatterns = [
     path('tag/', include('tags.urls')),
     path('about/', PostDetailAbout.as_view(), name='about'),
     path('guest-room/', include('guestroom.urls')),
+    path(
+        'sitemap.xml', sitemap,
+        {'sitemaps': {'index': IndexSiteMap(), 'post': PostSiteMap(),
+         'guest_room': GuestRoomSiteMap(), 'post_about': PostAboutSiteMap()}},
+        name='django.contrib.sitemaps.views.sitemap'
+    ),
 ]
 
 if settings.DEBUG:
