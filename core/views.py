@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 from posts.models import Post
 
@@ -9,3 +9,8 @@ class IndexView(ListView):
 
     def get_queryset(self):
         return Post.objects.filter(is_published=True)
+
+
+class RobotsTxt(TemplateView):
+    template_name = 'core/robots.txt'
+    content_type = 'text/plain'

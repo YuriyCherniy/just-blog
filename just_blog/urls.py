@@ -20,17 +20,19 @@ from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
 
 from posts.views import PostDetailAbout
+from core.views import RobotsTxt, IndexView
 from core.sitemap import IndexSiteMap, PostSiteMap, PostAboutSiteMap, GuestRoomSiteMap
 
 
 urlpatterns = [
-    path('', include('core.urls')),
+    path('', IndexView.as_view(), name='index'),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('post/', include('posts.urls')),
     path('tag/', include('tags.urls')),
     path('about/', PostDetailAbout.as_view(), name='about'),
     path('guest-room/', include('guestroom.urls')),
+    path('robots.txt', RobotsTxt.as_view()),
     path(
         'sitemap.xml', sitemap,
         {'sitemaps': {'index': IndexSiteMap(), 'post': PostSiteMap(),
