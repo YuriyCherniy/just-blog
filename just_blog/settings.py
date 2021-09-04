@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_cleanup.apps.CleanupConfig',
     'snowpenguin.django.recaptcha3',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [
@@ -194,5 +195,7 @@ RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_DEFAULT_ACTION = 'generic'
 RECAPTCHA_SCORE_THRESHOLD = 0.5
+
+SECRET_ADMIN_URL = env('SECRET_ADMIN_URL')
 
 SITE_ID=2
