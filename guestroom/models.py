@@ -3,14 +3,18 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 
-help_text = mark_safe(
-    'This site is protected by reCAPTCHA and the Google \
-    <a href="https://policies.google.com/privacy">Privacy Policy</a> and \
-    <a href="https://policies.google.com/terms">Terms of Service</a> apply.'
-)
-
-
 class GuestPost(models.Model):
+    '''
+    Do not remove or replace "help_text" variable content.
+    This blog uses hidden reCAPTCHA by Google, so you must tell
+    your users explicitly about using this feature.
+    This is google requirement.
+    '''
+    help_text = mark_safe(
+        'This site is protected by reCAPTCHA and the Google \
+        <a href="https://policies.google.com/privacy">Privacy Policy</a> and \
+        <a href="https://policies.google.com/terms">Terms of Service</a> apply.'
+    )
     anonymous_username = models.CharField(max_length=40, verbose_name='Представьтесь:')
     text = models.TextField(max_length=700, verbose_name='Текст:', help_text=help_text)
     created = models.DateTimeField(auto_now_add=True)
