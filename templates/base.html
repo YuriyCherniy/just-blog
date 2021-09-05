@@ -1,0 +1,114 @@
+{% load static %}
+{% load recaptcha3 %}
+{% load new_guest_post_counter_tag %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  {% recaptcha_init %}
+  {% recaptcha_ready action_name='homepage' %}
+  <!-- custom google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+  <!-- end custom google font -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+  <div class="content">
+    <nav>
+      <div class="container">
+        <div class="row justify-content-center mt-lg-4 mb-4 mb-lg-5">
+          <div class="col-lg-8 custom-font">
+
+            <div class="container">
+              <div class="row">
+                <div class="col px-0">
+                  <div class="d-flex justify-content-lg-start">
+                    <a class="text-muted" href="/">
+                      <h3>@YuriyCherniy</h3>
+                    </a>
+                  </div>
+                </div>
+                <div class="col px-0">
+                  <div class="d-flex justify-content-lg-end">
+                    <a class="text-muted" href="{% url 'guest_room' %}">
+                      <h4>гостевая</h4>
+                    </a>
+                    {% if user.is_authenticated and user.is_superuser %}
+                    <small class="text-danger ml-1 mr-lg-3">
+                      {% count_new_guest_post as post_count %}
+                      {% if post_count %}
+                      {{ post_count }}
+                      {% endif %}
+                    </small>
+                    {% endif %}
+                    <a class="text-muted ml-3" href="{% url 'about' %}">
+                      <h4>о блоге</h4>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+          {% if messages %}
+          {% for message in messages %}
+          <div class="text-center">
+            <div class="alert alert-{{ message.tags }}" role="alert">
+              {{ message }}
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+
+          {% block content %}{% endblock content %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer mt-2">
+    <hr>
+    <div class="container my-2">
+      <div class="d-sm-flex justify-content-between">
+
+        <div class="footer-left">
+          <small>Copyright © 2021 linky.su</small>
+        </div>
+
+        <div class="footer-right">
+          <small>Contact: info@linky.su</small>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

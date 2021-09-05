@@ -14,8 +14,35 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
+from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
+
+from posts.views import PostDetailAbout
+from core.views import RobotsTxt, IndexView
+from core.sitemap import IndexSiteMap, PostSiteMap, PostAboutSiteMap, GuestRoomSiteMap
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', IndexView.as_view(), name='index'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('post/', include('posts.urls')),
+    path('tag/', include('tags.urls')),
+    path('about/', PostDetailAbout.as_view(), name='about'),
+    path('guest-room/', include('guestroom.urls')),
+    path('robots.txt', RobotsTxt.as_view()),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path(f'{settings.SECRET_ADMIN_URL}/', admin.site.urls),
+    path(
+        'sitemap.xml', sitemap,
+        {'sitemaps': {'index': IndexSiteMap(), 'post': PostSiteMap(),
+         'guest_room': GuestRoomSiteMap(), 'post_about': PostAboutSiteMap()}},
+        name='django.contrib.sitemaps.views.sitemap'
+    ),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )

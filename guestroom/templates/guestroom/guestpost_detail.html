@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Ответить на сообщение{% endblock title %}
+
+{% block content %}
+<b class="mr-3">{{ object.anonymous_username }}</b>
+<small class="text-muted">{{ object.created }}</small>
+<br>
+{{ object.text }}
+<hr>
+<form action="{% url 'guest_comment_create' %}" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Имя администратора:</label>
+    <input type="text" maxlength="40" name="username" class="form-control" id="exampleFormControlInput1"
+      value="@YuriyCherniy">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Текст:</label>
+    <textarea name="text" maxlength="700" class="form-control" id="exampleFormControlTextarea1"
+      rows="5">{{ object.anonymous_username }}, </textarea>
+  </div>
+  <input type="hidden" name="guest_post_pk" value="{{ object.pk }}">
+  <button type="submit" class="btn btn-outline-dark">Отправить</button>
+</form>
+{% endblock content %}

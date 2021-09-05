@@ -1,1 +1,6 @@
-.devcontainer
+__pycache__/
+media/
+.vscode/
+.venv/
+media/
+.env

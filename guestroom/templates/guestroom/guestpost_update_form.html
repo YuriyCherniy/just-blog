@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Редактировать сообщение{% endblock title %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <button type="submit" class="btn btn-outline-dark">Отправить</button>
+</form>
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}О блоге{% endblock title %}
+
+{% block content %}
+<br>
+<div class="text-justify">
+  {{ object.text|safe }}
+</div>
+<br>
+{% endblock content %}

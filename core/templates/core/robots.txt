@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /tag/
+Disallow: /admin/
+sitemap: http://example.com/sitemaps.xml
