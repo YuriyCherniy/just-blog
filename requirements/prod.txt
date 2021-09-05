@@ -1,2 +1,2 @@
 -r base.txt
-gunicorn
+gunicorn==20.1.0
