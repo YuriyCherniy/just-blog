@@ -4,6 +4,6 @@ services:
   web:
     build: .
     volumes:
-      - ./static:/app/staticfiles
+      - ./static:/app/static
     network_mode: "host"
     restart: unless-stopped
