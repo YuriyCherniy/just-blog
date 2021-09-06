@@ -52,12 +52,12 @@
                       <h4>гостевая</h4>
                     </a>
                     {% if user.is_authenticated and user.is_superuser %}
+                    {% count_new_guest_post as post_count %}
+                    {% if post_count %}
                     <small class="text-danger ml-1 mr-lg-3">
-                      {% count_new_guest_post as post_count %}
-                      {% if post_count %}
                       {{ post_count }}
-                      {% endif %}
                     </small>
+                      {% endif %}
                     {% endif %}
                     <a class="text-muted ml-3" href="{% url 'about' %}">
                       <h4>о блоге</h4>
