@@ -19,7 +19,7 @@ class GuestPostList(ListView):
     paginate_by = 10
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_superuser:
+        if request.user.is_authenticated and request.user.is_superuser:
             post_counter.reset_counter()
         return super().get(request, *args, **kwargs)
 
