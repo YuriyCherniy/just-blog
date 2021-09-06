@@ -6,5 +6,6 @@ COPY requirements/prod.txt requirements.txt
 RUN pip3 install -r requirements.txt
 COPY . .
 RUN python manage.py collectstatic
+RUN python manage.py migrate
 RUN ["chmod", "+x", "docker-entrypoint.sh"]
 ENTRYPOINT [ "./docker-entrypoint.sh" ]

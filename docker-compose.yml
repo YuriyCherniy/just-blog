@@ -4,6 +4,8 @@ services:
   web:
     build: .
     volumes:
-      - ./static:/app/static
+      - media-data:/app/media
     network_mode: "host"
     restart: unless-stopped
+volumes:
+  media-data:
