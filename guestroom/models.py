@@ -49,7 +49,7 @@ class GuestComment(models.Model):
 
 class NewGuestPostCounter(models.Model):
     '''
-    Keeps a count of unread guest posts
+    Keeps a count of unread guest posts and manage this data
     '''
     counter = models.IntegerField()
 
