@@ -6,12 +6,8 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db import IntegrityError
 
-from .models import GuestPost, GuestComment
+from .models import GuestPost, GuestComment, NewGuestPostCounter
 from .forms import GuestCommentForm, GuestPostForm
-from .services import NewGuestPostCounter
-
-
-post_counter = NewGuestPostCounter()
 
 
 class GuestPostList(ListView):
@@ -20,6 +16,7 @@ class GuestPostList(ListView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated and request.user.is_superuser:
+            post_counter = NewGuestPostCounter.objects.first()
             post_counter.reset_counter()
         return super().get(request, *args, **kwargs)
 
@@ -47,6 +44,7 @@ class GuestPostCreate(SuccessMessageMixin, CreateView):
     def post(self, request, *args, **kwargs):
         form = GuestPostForm(request.POST)
         if form.is_valid():
+            post_counter = NewGuestPostCounter.objects.first()
             post_counter.add_one()
             return super().post(request, *args, **kwargs)
         if form.errors.get('captcha', False):
