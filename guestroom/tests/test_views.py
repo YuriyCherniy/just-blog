@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.db import transaction, IntegrityError
 
-from guestroom.services import NewGuestPostCounter
+from guestroom.models import NewGuestPostCounter
 from users.models import BlogUser
 from guestroom.models import GuestPost, GuestComment
 
@@ -27,10 +27,11 @@ class GuestPostListViewTestCase(TestCase):
         self.assertTemplateUsed(response, 'guestroom/guestpost_list.html')
 
     def test_reset_guest_post_counter(self):
-        counter = NewGuestPostCounter()
+        counter = NewGuestPostCounter.objects.first()
         counter.add_one()
         self.c.login(username='s_user', password='0000')
         self.c.get(reverse('guest_room'))
+        counter = NewGuestPostCounter.objects.first()
         self.assertEqual(counter.get_counter(), 0)
 
 
