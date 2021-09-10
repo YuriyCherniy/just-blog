@@ -45,3 +45,10 @@ class GuestComment(models.Model):
 
     def __str__(self):
         return self.text[:40]
+
+
+class NewGuestPostCounterModel(models.Model):
+    '''
+    Keeps a count of unread guest posts
+    '''
+    counter = models.IntegerField()

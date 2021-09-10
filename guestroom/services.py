@@ -1,21 +1,17 @@
-class Singleton(type):
-    _instance = None
-
-    def __call__(cls, *args, **kwargs):
-        if not cls._instance:
-            cls._instance = super().__call__(*args, **kwargs)
-        return cls._instance
+from .models import NewGuestPostCounterModel
 
 
-class NewGuestPostCounter(metaclass=Singleton):
-    def __init__(self):
-        self.counter = 0
-
+class NewGuestPostCounter():
     def get_counter(self):
-        return self.counter
+        obj = NewGuestPostCounterModel.objects.first()
+        return obj
 
     def add_one(self):
-        self.counter += 1
+        obj = NewGuestPostCounterModel.objects.first()
+        obj.counter += 1
+        obj.save()
 
     def reset_counter(self):
-        self.counter = 0
+        obj = NewGuestPostCounterModel.objects.first()
+        obj.counter = 0
+        obj.save()
