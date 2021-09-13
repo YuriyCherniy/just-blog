@@ -9,6 +9,9 @@ from tags.models import Tag
 class Post(models.Model):
     title = models.CharField(max_length=200, verbose_name='название')
     slug = models.SlugField(max_length=200, unique=True, verbose_name='ссылка')
+    description_tag = models.TextField(
+        max_length=200, blank=True, verbose_name='тег description', help_text='Максимальнае длина 200 символов.'
+    )
     poster = models.ImageField(upload_to='', blank=True, null=True, verbose_name='постер')
     text = RichTextUploadingField(verbose_name='текст')
     tag = models.ManyToManyField(Tag, blank=True, verbose_name='теги')
@@ -46,6 +49,9 @@ class Image(models.Model):
 
 class PostAbout(models.Model):
     title = models.CharField(max_length=200, verbose_name='название')
+    description_tag = models.TextField(
+        max_length=200, blank=True, verbose_name='тег description', help_text='Максимальнае длина 200 символов.'
+    )
     text = RichTextUploadingField(verbose_name='текст')
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
