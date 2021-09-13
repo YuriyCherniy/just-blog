@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load get_random_posts_tag %}
 
+{% block description %}{{ post.description_tag }}{% endblock description %}
 {% block title %}{{ post.title }}{%endblock title%}
 
 {% block content %}
@@ -20,7 +21,7 @@
 
 <br>
 {% if post.poster %}
-<img class="poster-img rounded mb-3" src="{{ post.poster.url }}" alt="{{ post.poster_description }}">
+<img class="poster-img rounded mb-3" src="{{ post.poster.url }}">
 {% endif %}
 <div class="text-justify">
   {{ post.text|safe }}
