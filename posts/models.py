@@ -6,18 +6,24 @@ from django.utils.html import mark_safe
 from tags.models import Tag
 
 
-class Post(models.Model):
+class PostBaseModel(models.Model):
     title = models.CharField(max_length=200, verbose_name='название')
-    slug = models.SlugField(max_length=200, unique=True, verbose_name='ссылка')
-    description_tag = models.TextField(
-        max_length=200, blank=True, verbose_name='тег description', help_text='Максимальнае длина 200 символов.'
-    )
-    poster = models.ImageField(upload_to='', blank=True, null=True, verbose_name='постер')
     text = RichTextUploadingField(verbose_name='текст')
-    tag = models.ManyToManyField(Tag, blank=True, verbose_name='теги')
-    is_published = models.BooleanField(default=False, verbose_name='пост опубликован')
+    description_tag = models.TextField(
+        max_length=200, blank=True, verbose_name='тег description', help_text='Максимальная длина 200 символов.'
+    )
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class Post(PostBaseModel):
+    slug = models.SlugField(max_length=200, unique=True, verbose_name='ссылка')
+    poster = models.ImageField(upload_to='', blank=True, null=True, verbose_name='постер')
+    tag = models.ManyToManyField(Tag, blank=True, verbose_name='теги')
+    is_published = models.BooleanField(default=False, verbose_name='пост опубликован')
 
     class Meta:
         ordering = ['-created']
@@ -29,6 +35,15 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[self.slug])
+
+
+class PostAbout(PostBaseModel):
+    class Meta:
+        verbose_name = 'О блоге'
+        verbose_name_plural = 'О блоге'
+
+    def __str__(self):
+        return self.title
 
 
 class Image(models.Model):
@@ -45,20 +60,3 @@ class Image(models.Model):
     def get_image_tag(self):
         return mark_safe(f'<img src="{self.image.url}" width="150" height="auto"/>')
     get_image_tag.short_description = 'миниатюра'
-
-
-class PostAbout(models.Model):
-    title = models.CharField(max_length=200, verbose_name='название')
-    description_tag = models.TextField(
-        max_length=200, blank=True, verbose_name='тег description', help_text='Максимальнае длина 200 символов.'
-    )
-    text = RichTextUploadingField(verbose_name='текст')
-    created = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        verbose_name = 'О блоге'
-        verbose_name_plural = 'О блоге'
-
-    def __str__(self):
-        return self.title
