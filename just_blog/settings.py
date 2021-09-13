@@ -169,6 +169,7 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
+        'height': 550,
         'toolbar_Custom': [
             ['Format'],
             ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote'],
