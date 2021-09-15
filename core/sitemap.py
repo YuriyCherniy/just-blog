@@ -16,7 +16,6 @@ class IndexSiteMap(Sitemap):
 
 
 class PostSiteMap(Sitemap):
-    changefreq = 'yearly'
     priority = 0.6
 
     def items(self):
@@ -27,7 +26,6 @@ class PostSiteMap(Sitemap):
 
 
 class PostAboutSiteMap(Sitemap):
-    changefreq = 'yearly'
     priority = 0.5
 
     def items(self):
@@ -38,7 +36,6 @@ class PostAboutSiteMap(Sitemap):
 
 
 class GuestRoomSiteMap(Sitemap):
-    changefreq = 'weekly'
     priority = 0.5
 
     def items(self):
