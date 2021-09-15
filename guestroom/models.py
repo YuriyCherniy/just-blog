@@ -33,7 +33,7 @@ class GuestPost(models.Model):
 
 
 class GuestComment(models.Model):
-    username = models.CharField(max_length=40, default='@YuriyCherniy', verbose_name='Имя администратора:')
+    username = models.CharField(max_length=40, default='Алла (админ)', verbose_name='Имя администратора:')
     text = models.TextField(max_length=700, verbose_name='Текст:')
     guest_post = models.OneToOneField(GuestPost, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
