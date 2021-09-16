@@ -1,13 +1,14 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
-from django.urls import reverse_lazy, reverse
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, render
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db import IntegrityError
+from django.shortcuts import redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView, View)
 
-from .models import GuestPost, GuestComment, NewGuestPostCounter
 from .forms import GuestCommentForm, GuestPostForm
+from .models import GuestComment, GuestPost, NewGuestPostCounter
 
 
 class GuestPostList(ListView):

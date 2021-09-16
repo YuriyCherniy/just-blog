@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from guestroom.models import GuestPost, GuestComment
+from guestroom.models import GuestComment, GuestPost
 
 
 class GuestPostModelTestCase(TestCase):

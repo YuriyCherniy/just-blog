@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import GuestPost, GuestComment
+from .models import GuestComment, GuestPost
 
 
 class GuestCommentInline(admin.TabularInline):

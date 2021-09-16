@@ -1,16 +1,8 @@
 from django.urls import path
 
-from .views import (
-    GuestPostList,
-    GuestPostDetail,
-    GuestPostCreate,
-    GuestPostUpdate,
-    GuestPostDelete,
-    GuestCommentCreate,
-    GuestCommentDelete,
-    GuestCommentUpdate,
-)
-
+from .views import (GuestCommentCreate, GuestCommentDelete, GuestCommentUpdate,
+                    GuestPostCreate, GuestPostDelete, GuestPostDetail,
+                    GuestPostList, GuestPostUpdate)
 
 urlpatterns = [
     path('', GuestPostList.as_view(), name='guest_room'),

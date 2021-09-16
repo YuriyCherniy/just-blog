@@ -1,5 +1,5 @@
-from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.db import models
 from django.urls import reverse
 from django.utils.html import mark_safe
 

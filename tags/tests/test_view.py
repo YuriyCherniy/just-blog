@@ -1,8 +1,8 @@
-from django.test  import TestCase, Client
+from django.test import Client, TestCase
 from django.urls import reverse
 
-from tags.models import Tag
 from posts.models import Post
+from tags.models import Tag
 
 
 class PostListFromTagTestCase(TestCase):

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from posts.models import Post, PostAbout, Image
+from posts.models import Image, Post, PostAbout
 
 
 class PostModelTestCase(TestCase):

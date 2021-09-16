@@ -1,16 +1,10 @@
 from django.test import SimpleTestCase
-from django.urls import reverse, resolve
+from django.urls import resolve, reverse
 
-from guestroom.views import (
-    GuestPostList,
-    GuestPostDetail,
-    GuestPostCreate,
-    GuestPostUpdate,
-    GuestPostDelete,
-    GuestCommentCreate,
-    GuestCommentDelete,
-    GuestCommentUpdate,
-)
+from guestroom.views import (GuestCommentCreate, GuestCommentDelete,
+                             GuestCommentUpdate, GuestPostCreate,
+                             GuestPostDelete, GuestPostDetail, GuestPostList,
+                             GuestPostUpdate)
 
 
 class GuestPostUrlsTestCase(SimpleTestCase):

@@ -1,8 +1,7 @@
 from django import forms
-
 from snowpenguin.django.recaptcha3.fields import ReCaptchaField
 
-from .models import GuestPost, GuestComment
+from .models import GuestComment, GuestPost
 
 
 class GuestPostForm(forms.ModelForm):

@@ -1,7 +1,7 @@
-from django.test import TestCase, Client, SimpleTestCase
+from django.test import Client, SimpleTestCase, TestCase
 
-from posts.models import Post
 from core.views import IndexView
+from posts.models import Post
 
 
 class CoreViewsTesCase(TestCase):
