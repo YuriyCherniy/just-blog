@@ -3,8 +3,8 @@ from django.urls import reverse
 
 
 class Tag(models.Model):
-    title = models.CharField(max_length=20)
-    slug = models.SlugField(max_length=20, unique=True)
+    title = models.CharField(max_length=20, verbose_name='Название')
+    slug = models.SlugField(max_length=20, unique=True, verbose_name='Ссылка')
 
     class Meta:
         ordering = ['title']
