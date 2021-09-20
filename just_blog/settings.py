@@ -182,6 +182,7 @@ CKEDITOR_CONFIGS = {
             ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote'],
             ['TextColor', 'BGColor'],
             ['Undo', 'Redo'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
             ['NumberedList', 'BulletedList'],
             ['Link', 'Unlink'],
             ['Image', 'Youtube'],
