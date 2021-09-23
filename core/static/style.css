@@ -30,3 +30,7 @@ html, body {
 .grecaptcha-badge {
   visibility: hidden;
 }
+
+.nobr-nav {
+  white-space: pre;
+}
