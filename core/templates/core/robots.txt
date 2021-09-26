@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /tag/
 Disallow: /admin/
-sitemap: http://example.com/sitemaps.xml
+sitemap: https://vzglad-iz-pod-ochkov.ru/sitemap.xml
