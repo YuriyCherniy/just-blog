@@ -4,6 +4,7 @@ from tags.models import Tag
 
 
 class PostListFromTag(ListView):
+    paginate_by = 10
     template_name = 'tags/tags_post_list.html'
 
     def get_queryset(self):
