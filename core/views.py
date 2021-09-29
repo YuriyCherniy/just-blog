@@ -4,7 +4,7 @@ from posts.models import Post
 
 
 class IndexView(ListView):
-    paginate_by = 5
+    paginate_by = 10
     template_name = 'core/index.html'
 
     def get_queryset(self):
