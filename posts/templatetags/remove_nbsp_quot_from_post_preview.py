@@ -7,5 +7,7 @@ register = template.Library()
 
 @register.filter
 @stringfilter
-def remove_nbsp(text):
-    return text.replace('&nbsp;', '')
+def remove_nbsp_quot(text):
+    text.replace('&nbsp;', '')
+    text.replace('&quot;', '')
+    return text
