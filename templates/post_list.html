@@ -1,4 +1,4 @@
-{% load remove_nbsp_from_post_preview %}
+{% load remove_nbsp_quot_from_post_preview %}
 
 {% for post in post_list %}
 <a class="text-dark" href="{{ post.get_absolute_url }}">
@@ -9,7 +9,7 @@
 {% if post.poster %}
 <img class="poster-img rounded mb-3" src="{{ post.poster.url }}" alt="{{ post.poster_description }}">
 {% endif %}
-<div class="text-justify mb-5">{{ post.text|truncatewords:100|striptags|remove_nbsp }} <b><a class="text-dark"
+<div class="text-justify mb-5">{{ post.text|truncatewords:100|striptags|remove_nbsp_quot }} <b><a class="text-dark"
       href="{{ post.get_absolute_url }}">читать
       далее</a></b>
 </div>
