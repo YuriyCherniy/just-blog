@@ -8,6 +8,6 @@ register = template.Library()
 @register.filter
 @stringfilter
 def remove_nbsp_quot(text):
-    text.replace('&nbsp;', '')
-    text.replace('&quot;', '')
+    text = text.replace('&nbsp;', '')
+    text = text.replace('&quot;', '')
     return text
