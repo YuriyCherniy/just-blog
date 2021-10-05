@@ -191,6 +191,7 @@ CKEDITOR_CONFIGS = {
         ],
         'extraPlugins': ['codesnippet', 'youtube'],
         'forcePasteAsPlainText': True,
+        'fillEmptyBlocks': False,
     }
 }
 
