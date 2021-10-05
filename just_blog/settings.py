@@ -50,7 +50,7 @@ if not DEBUG:
         traces_sample_rate=1.0,
     )
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['there-is-a-bug.ru']
 
 
 # Application definition
@@ -191,6 +191,7 @@ CKEDITOR_CONFIGS = {
         ],
         'extraPlugins': ['codesnippet', 'youtube'],
         'forcePasteAsPlainText': True,
+        'fillEmptyBlocks': False,
     }
 }
 

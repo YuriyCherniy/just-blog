@@ -7,7 +7,7 @@ register = template.Library()
 
 @register.filter
 @stringfilter
-def remove_nbsp_quot(text):
-    text = text.replace('&nbsp;', '')
-    text = text.replace('&quot;', '')
+def remove_special_char(text):
+    text = text.replace('&#39;', '')  # remove single quot char
+    text = text.replace('&quot;', '')  # remove double quot char
     return text
