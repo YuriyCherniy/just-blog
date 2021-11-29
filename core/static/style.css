@@ -13,6 +13,15 @@ html, body {
     flex-shrink: 0;
   }
 
+  blockquote {
+    font-style: italic;
+    border-left: 1px solid #000;
+    border-width: 5px;
+    border-color: #b3b8b8;
+    padding-left: 20px;
+    margin-left: 15px;
+  }
+
 /*makes images and embed videos responsive*/
   iframe {
     width:100%;
