@@ -7,7 +7,7 @@
 <div class="text-muted">{{ post.created|date:"d M Y" }}</div>
 <br>
 {% if post.poster %}
-<img alt="" class="poster-img rounded mb-3" src="{{ post.poster.url }}" alt="{{ post.poster_description }}">
+<img class="poster-img rounded mb-3" src="{{ post.poster.url }}" alt="{{ post.poster_description }}">
 {% endif %}
 <div class="text-justify mb-5">{{ post.text|truncatewords:60|striptags|remove_special_char }} <b><a class="text-dark"
       href="{{ post.get_absolute_url }}">читать
