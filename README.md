@@ -46,7 +46,7 @@ SENTRY_DSN=None
 ```
 **Внимание! Перед запуском приложения необходимо создать и настроить базу данных PostgrSQL. Затем внести соответствующие данные в переменные ```POSTGRES_DB```, ```POSTGRES_USER``` и ```POSTGRES_USER_PASSWORD``` содержащиеся в файле .env Также в текущей конфигурации отключена Google reCAPTCHA v3, поэтому в гостевой комнате будет невозможно оставить сообщение через форму. Для правильной работы reCAPTCHA необходимо указать значения для переменных ```RECAPTCHA_PRIVATE_KEY``` и ```RECAPTCHA_PUBLIC_KEY```. Получить значения можно здесь: [Google reCAPTCHA v3](https://www.google.com/recaptcha/about/).**
 
-* В модуле settings.py изменяем значение переменной содержащей разрешённые хосты
+* В модуле [settings.py](https://github.com/YuriyCherniy/just-blog/blob/532b61e5a780c78792084b70e7a1aeee30d0bb16/just_blog/settings.py#L53) изменяем значение переменной содержащей разрешённые хосты
 ```
 ALLOWED_HOSTS = ['*']
 ```
