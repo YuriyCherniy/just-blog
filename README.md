@@ -8,25 +8,31 @@ just-blog - блог с минималистичным дизайном и со 
 * Система тегов для групировки контента по тематикам
 
 ## Запуск на локальном хосте ##
+Клонируем репозиторий
 ```
 git clone https://github.com/YuriyCherniy/just-blog.git
 ```
+Переходим в корневую папку проекта
 ```
 cd just-blog/
 ```
+Создаём виртуальное окружение
 ```
 python3 -m venv .venv
 ```
+Активируем виртуальное окружение
 ```
 source .venv/bin/activate
 ```
+Устанавливаем зависимости
 ```
 pip3 install -r requirements/dev.txt
 ```
+Создаём файл для хранения переменных
 ```
 touch .env
 ```
-
+Помещаем в файл .env следующее содержимое
 ```
 SECRET_KEY=django-insecure-vvk8k^sc_65!yym6jq#ija-3j)nnvup)d4a7w1442scx2gj=_d
 DEBUG=True
