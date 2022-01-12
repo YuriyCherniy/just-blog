@@ -36,11 +36,12 @@ touch .env
 ```
 SECRET_KEY=django-insecure-vvk8k^sc_65!yym6jq#ija-3j)nnvup)d4a7w1442scx2gj=_d
 DEBUG=True
-POSTGRES_DB=blog_db
-POSTGRES_USER=user_postgres
-POSTGRES_USER_PASSWORD=0000
+POSTGRES_DB=<db_name>
+POSTGRES_USER=<postgres_user_name>
+POSTGRES_USER_PASSWORD=<db_password>
 RECAPTCHA_PRIVATE_KEY=None
 RECAPTCHA_PUBLIC_KEY=None
 SECRET_ADMIN_URL=admin
 SENTRY_DSN=None
 ```
+**Внимание! Перед запуском приложения необходимо создать и настроить базу данных PostgrSQL. Затем внести соответствующие данные в переменные ```POSTGRES_DB```, ```POSTGRES_USER``` и ```POSTGRES_USER_PASSWORD``` содержащиеся в файле .env**
