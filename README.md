@@ -46,8 +46,20 @@ SENTRY_DSN=None
 ```
 **Внимание! Перед запуском приложения необходимо создать и настроить базу данных PostgrSQL. Затем внести соответствующие данные в переменные ```POSTGRES_DB```, ```POSTGRES_USER``` и ```POSTGRES_USER_PASSWORD``` содержащиеся в файле .env Также в текущей конфигурации отключена Google reCAPTCHA v3, поэтому в гостевой комнате будет невозможно оставить сообщение через форму. Для правильной работы reCAPTCHA необходимо указать значения для переменных ```RECAPTCHA_PRIVATE_KEY``` и ```RECAPTCHA_PUBLIC_KEY```. Получить значения можно здесь: [Google reCAPTCHA v3](https://www.google.com/recaptcha/about/).**
 
-./manage.py migrate
-
-./manage.py runserver
-
+* В модуле settings.py изменяем значение переменной содержащей разрешённые хосты
+```
 ALLOWED_HOSTS = ['*']
+```
+* Применяем миграции
+```
+./manage.py migrate
+```
+* Создаём суперюзера
+```
+./manage.py createsuperuser
+```
+* Запускаем локальный сервер
+```
+./manage.py runserver
+```
+* Переходим по адресу: http://127.0.0.1:8000/
