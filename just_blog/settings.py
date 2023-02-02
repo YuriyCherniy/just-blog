@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'snowpenguin.django.recaptcha3',
     'admin_honeypot',
+    'wysiwyg_img',
 ]
 
 MIDDLEWARE = [

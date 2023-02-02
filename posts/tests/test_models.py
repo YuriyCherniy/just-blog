@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from posts.models import Image, Post, PostAbout
+from posts.models import PostImage, Post, PostAbout
 
 
 class PostModelTestCase(TestCase):
@@ -46,19 +46,9 @@ class ImageModelTestCase(TestCase):
         post = Post.objects.create(
             title='test title', slug='test-slug', text='test text',
         )
-        Image.objects.create(image='fake-url', post=post)
+        PostImage.objects.create(image='fake-url', post=post)
 
     def test_image_model_str_method(self):
-        image = Image.objects.first()
+        image = PostImage.objects.first()
         str_method_result = image.__str__()
         self.assertEqual(str_method_result, f'изображение №{image.pk}')
-
-    def test_get_image_url_method(self):
-        image = Image.objects.first()
-        url = image.get_image_url()
-        self.assertEqual(url, f'<h3>{image.image.url}</h3>')
-
-    def test_get_image_method(self):
-        image = Image.objects.first()
-        img_tag = image.get_image_tag()
-        self.assertEqual(img_tag, f'<img src="{image.image.url}" width="150" height="auto"/>')

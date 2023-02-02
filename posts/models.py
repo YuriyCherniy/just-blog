@@ -3,6 +3,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.html import mark_safe
 
+from wysiwyg_img.models import BaseImageModel
+
 from tags.models import Tag
 
 
@@ -53,17 +55,8 @@ class PostAbout(PostBaseModel):
         return self.title
 
 
-class Image(models.Model):
-    image = models.ImageField(upload_to='', verbose_name='изображение')
+class PostImage(BaseImageModel):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'изображение №{self.pk}'
-
-    def get_image_url(self):
-        return mark_safe(f'<h3>{self.image.url}</h3>')
-    get_image_url.short_description = 'ссылка для вставки'
-
-    def get_image_tag(self):
-        return mark_safe(f'<img src="{self.image.url}" width="150" height="auto"/>')
-    get_image_tag.short_description = 'миниатюра'

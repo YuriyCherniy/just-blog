@@ -1,18 +1,16 @@
 from django.contrib import admin
 
-from posts.models import Image, Post, PostAbout
+from wysiwyg_img.admin import ImageInline
+
+from posts.models import PostImage, Post, PostAbout
 
 
-class ImageInline(admin.TabularInline):
-    model = Image
-    readonly_fields = [
-        'get_image_url', 'get_image_tag',
-    ]
-
+class PostImageInline(ImageInline):
+    model = PostImage
 
 class PostAdmin(admin.ModelAdmin):
     inlines = [
-        ImageInline,
+        PostImageInline,
     ]
     prepopulated_fields = {'slug': ('title',)}
     fields = (
