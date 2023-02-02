@@ -43,14 +43,15 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
+    ALLOWED_HOSTS = ['there-is-a-bug.ru']
 
     sentry_sdk.init(
         dsn=env('SENTRY_DSN'),
         integrations=[DjangoIntegration()],
         traces_sample_rate=1.0,
     )
-
-ALLOWED_HOSTS = ['there-is-a-bug.ru']
+else:
+    ALLOWED_HOSTS = ['*']
 
 
 # Application definition
