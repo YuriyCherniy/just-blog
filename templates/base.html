@@ -31,7 +31,8 @@
   <link rel="stylesheet" href="{% static 'style.css' %}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{% block description %}Изучаю Python, Django и сопутствующие технологии. Делюсь опытом вхождения в it{% endblock description %}">
+  <meta name="description"
+    content="{% block description %}Изучаю Python, Django и сопутствующие технологии. Делюсь опытом вхождения в it{% endblock description %}">
   <title>{% block title %}{% endblock title %}</title>
 </head>
 
@@ -48,7 +49,11 @@
                 <div class="col px-0">
                   <div class="d-flex justify-content-lg-start">
                     <a class="text-muted" href="/">
+                      {% if user.is_authenticated and user.is_superuser %}
+                      <h3 class="text-info">@YuriyCherniy</h3>
+                      {% else %}
                       <h3>@YuriyCherniy</h3>
+                      {% endif %}
                     </a>
                   </div>
                 </div>
