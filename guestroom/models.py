@@ -34,6 +34,9 @@ class GuestPost(models.Model):
 
 
 class GuestComment(models.Model):
+    '''
+    Model represents comments to guest posts in guest room
+    '''
     username = models.CharField(max_length=40, default='@YuriyCherniy', verbose_name='Имя администратора:')
     text = models.TextField(max_length=700, verbose_name='Текст:')
     guest_post = models.OneToOneField(GuestPost, on_delete=models.CASCADE)
