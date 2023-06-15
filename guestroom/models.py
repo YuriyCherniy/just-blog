@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import F
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
@@ -49,15 +50,12 @@ class GuestComment(models.Model):
 
 class NewGuestPostCounter(models.Model):
     '''
-    Keeps a count of unread guest posts and manage this data
+    Count of unread guest posts and manage this data
     '''
     counter = models.IntegerField()
 
-    def get_counter(self):
-        return self.counter
-
     def add_one(self):
-        self.counter += 1
+        self.counter = F('counter') + 1
         self.save()
 
     def reset_counter(self):
