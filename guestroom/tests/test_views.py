@@ -3,6 +3,7 @@ from django.test import Client, TestCase
 from django.urls import reverse
 
 from guestroom.models import GuestComment, GuestPost, NewGuestPostCounter
+from guestroom.templatetags.new_guest_post_counter_tag import count_new_guest_post
 from users.models import BlogUser
 
 
@@ -30,8 +31,7 @@ class GuestPostListViewTestCase(TestCase):
         counter.add_one()
         self.c.login(username='s_user', password='0000')
         self.c.get(reverse('guest_room'))
-        counter = NewGuestPostCounter.objects.first()
-        self.assertEqual(counter.get_counter(), 0)
+        self.assertEqual(count_new_guest_post(), 0)
 
 
 class GuestPostDetailViewTestCase(TestCase):
