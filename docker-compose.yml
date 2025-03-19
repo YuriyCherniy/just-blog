@@ -2,20 +2,20 @@ services:
   app:
     build: ./app
     volumes:
-      - static_data: /app/static
+      - static_data: /app/static/
   nginx:
     build: ./nginx
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - static_data: /app/static
+      - static_data: /app/static/
       - type: bind
-        source: /var/log/nginx
-        target: /var/log/nginx
+        source: /var/log/nginx/
+        target: /var/log/nginx/
       - type: bind
-        source: /etc/letsencrypt
-        target: /etc/letsencrypt
+        source: /etc/letsencrypt/
+        target: /etc/letsencrypt/
       - type: bind
         source: /var/www/certbot/.well-known/acme-challenge/
         target: /var/www/certbot/.well-known/acme-challenge/
@@ -26,7 +26,7 @@ services:
       POSGRES_PASSWORD: 'password'
       POSTGRES_DB: 'blog_db'
     volumes:
-      - postgres_data: /var/lib/postgres/pg_data
+      - postgres_data: /var/lib/postgres/pg_data/
 volumes:
   static_data:
   postgres_data:
