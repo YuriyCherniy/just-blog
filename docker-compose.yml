@@ -2,7 +2,9 @@ services:
   app:
     build: ./app
     volumes:
-      - static_data: /app/static/
+      - type: volume
+        source: static_data
+        target: /app/static/
   nginx:
     build: ./nginx
     ports:
