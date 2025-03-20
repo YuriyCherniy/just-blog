@@ -3,4 +3,4 @@ media/
 .vscode/
 .venv/
 media/
-.env
+.env_
