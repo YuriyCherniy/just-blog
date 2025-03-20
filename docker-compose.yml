@@ -21,7 +21,10 @@ services:
         target: /var/www/certbot/.well-known/acme-challenge/
   db:
     image: postgres:17.3
-
+    environment:
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: 'password'
+      POSTGRES_DB: 'blog_db'
     volumes:
       - postgres_data:/var/lib/postgres/pg_data/
 volumes:
