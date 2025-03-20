@@ -23,7 +23,7 @@ services:
     image: postgres:17.3
     environment:
       POSTGRESS_USER: 'user'
-      POSGRES_PASSWORD: 'password'
+      POSTGRES_PASSWORD: 'password'
       POSTGRES_DB: 'blog_db'
     volumes:
       - postgres_data:/var/lib/postgres/pg_data/
