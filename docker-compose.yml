@@ -22,7 +22,7 @@ services:
   db:
     image: postgres:17.3
     environment:
-      POSTGRESS_USER: 'user'
+      POSTGRES_USER: 'user'
       POSTGRES_PASSWORD: 'password'
       POSTGRES_DB: 'blog_db'
     volumes:
