@@ -5,7 +5,7 @@ services:
      - static_data:/app/static
     depends_on:
       db:
-      condition: service_healthy
+        condition: service_healthy
     restart: always
   nginx:
     build: ./nginx
