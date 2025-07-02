@@ -1,4 +1,4 @@
-secrets:
+services:
   app:
     build: ./app
     volumes:
