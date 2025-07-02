@@ -3,10 +3,10 @@ services:
     build: ./app
     volumes:
      - static_data:/app/static
-    restart: always
     depends_on:
-      - db
-        
+      db:
+      condition: service_healthy
+    restart: always
   nginx:
     build: ./nginx
     ports:
