@@ -4,6 +4,8 @@ services:
     volumes:
      - static_data:/app/static
     restart: always
+    depends_on:
+      - db
         
   nginx:
     build: ./nginx
