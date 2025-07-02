@@ -6,5 +6,5 @@ WORKDIR /app
 COPY requirements/base.txt requirements/prod.txt requirements/
 RUN pip install -r requirements/prod.txt --no-cache-dir
 COPY . .
-RUN ["chmod", "755", "docker-entrypoint.sh"]
+RUN ["chmod", "+x", "docker-entrypoint.sh"]
 ENTRYPOINT [ "docker-entrypoint.sh" ]
