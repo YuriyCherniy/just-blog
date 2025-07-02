@@ -1,12 +1,24 @@
-version: "3.9"
-   
-services:
-  web:
-    build: .
+secrets:
+  app:
+    build: ./app
     volumes:
-      - ./static:/app/static
-      - media-data:/app/media
-    network_mode: "host"
-    restart: unless-stopped
-volumes:
-  media-data:
+     - static_data
+        
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - static_data 
+
+  db:
+    image: postgres:15.12
+    env_file:
+      - /app/.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+  volumes:
+    static_data:
+    postgres_data:
